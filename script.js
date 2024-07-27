@@ -1,6 +1,3 @@
-let humanScore = 0;
-let computerScore = 0;
-
 function getComputerChoice() {
   let random = Math.floor(Math.random() * 10);
   if (random <= 3) {
@@ -18,34 +15,36 @@ function getHumanChoice() {
     humanChoice.toLowerCase() != "rock" &&
     humanChoice.toLowerCase() != "paper" &&
     humanChoice.toLowerCase() != "scissors"
-  ) {humanChoice = getHumanChoice();
-   return humanChoice;
-    
+  ) {
+    humanChoice = getHumanChoice();
+    return humanChoice;
   } else {
-    return humanChoice[0].toUpperCase() +humanChoice.slice(1).toLowerCase();
+    return humanChoice[0].toUpperCase() + humanChoice.slice(1).toLowerCase();
   }
 }
-/*Logic for a single round*/
-
-
 
 function playRound(humanChoice, computerChoice) {
-   let msg = "";
-    if( humanChoice == computerChoice){
-console.log(`You played: ${humanChoice}. The computer played: ${computerChoice}.It's a draw! Play another round.`)
-   }
-   else if((humanChoice == "paper" && computerChoice == "rock")||(humanChoice == "rock" && computerChoice == "scissors")||(humanChoice == "scissors" && computerChoice == "paper")){
+  if (humanChoice == computerChoice) {
+    console.log(
+      `You played: ${humanChoice}. The computer played: ${computerChoice}. It's a draw! Play another round.`
+    );
+  } else if (
+    (humanChoice == "paper" && computerChoice == "rock") ||
+    (humanChoice == "rock" && computerChoice == "scissors") ||
+    (humanChoice == "scissors" && computerChoice == "paper")
+  ) {
     humanScore += 1;
-    console.log(`You played: ${humanChoice}. The computer played: ${computerChoice}.You win! ${humanChoice} beats ${computerChoice}. Your score is ${humanScore}. The computer score is ${computerScore}.`);
-   
-   }
-else{
-    computerScore +=1;
-    console.log(`ou played: ${humanChoice}. The computer played: ${computerChoice}. You lose! ${computerChoice} beats ${humanChoice}. Your score is ${humanScore}. The computer score is ${computerScore}.`);
-}
+    console.log(
+      `You played: ${humanChoice}. The computer played: ${computerChoice}.You win! ${humanChoice} beats ${computerChoice}. Your score is ${humanScore}. The computer score is ${computerScore}.`
+    );
+  } else {
+    computerScore += 1;
+    console.log(
+      `You played: ${humanChoice}. The computer played: ${computerChoice}. You lose! ${computerChoice} beats ${humanChoice}. Your score is ${humanScore}. The computer score is ${computerScore}.`
+    );
   }
-  
-  const humanSelection = getHumanChoice();
-  const computerSelection = getComputerChoice();
-  
-  playRound(humanSelection, computerSelection);
+}
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+
+playRound(humanSelection, computerSelection);
