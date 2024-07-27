@@ -1,8 +1,8 @@
 function getComputerChoice() {
-  let random = Math.floor(Math.random() * 10);
-  if (random <= 3) {
+  let random = Math.floor(Math.random() * 3);
+  if (random == 0) {
     return "Rock";
-  } else if (random >= 4 && random <= 6) {
+  } else if (random == 1) {
     return "Paper";
   } else {
     return "Scissors";
@@ -23,7 +23,6 @@ function getHumanChoice() {
   }
 }
 
-
 function playGame() {
   let humanScore = 0;
   let computerScore = 0;
@@ -39,12 +38,12 @@ function playGame() {
     ) {
       humanScore += 1;
       console.log(
-        `You played: ${humanChoice}. The computer played: ${computerChoice}.You win! ${humanChoice} beats ${computerChoice}. Your score is ${humanScore}. The computer score is ${computerScore}.`
+        `You played: ${humanChoice}. The computer played: ${computerChoice}.You win the round! ${humanChoice} beats ${computerChoice}. Your score is ${humanScore}. The computer score is ${computerScore}.`
       );
     } else {
       computerScore += 1;
       console.log(
-        `You played: ${humanChoice}. The computer played: ${computerChoice}. You lose! ${computerChoice} beats ${humanChoice}. Your score is ${humanScore}. The computer score is ${computerScore}.`
+        `You played: ${humanChoice}. The computer played: ${computerChoice}. You lose the round! ${computerChoice} beats ${humanChoice}. Your score is ${humanScore}. The computer score is ${computerScore}.`
       );
     }
   }
@@ -53,7 +52,17 @@ function playGame() {
     let computerSelection = getComputerChoice();
     playRound(humanSelection, computerSelection);
   }
-  console.log("Five rounds are over");
+  if (humanScore == computerScore) {
+    console.log("Draw!");
+  } else if (humanScore > computerScore) {
+    console.log(
+      `You win the game! Your score is ${humanScore}. The computer scored ${computerScore}.`
+    );
+  } else {
+    console.log(
+      `The computer wins the game! It scored ${computerScore}. Your score was ${humanScore}.`
+    );
+  }
 }
 
 playGame();
