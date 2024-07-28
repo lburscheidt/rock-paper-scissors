@@ -1,11 +1,14 @@
-let humanScore = 1;
-let computerScore = 1;
+let humanScore = 0;
+let computerScore = 0;
 
 let rockBtn = document.getElementById("rock-btn");
 let paperBtn = document.getElementById("paper-btn");
 let scissorsBtn = document.getElementById("scissors-btn");
+let restartBtn = document.getElementById("restart-btn")
 let resultsDiv = document.getElementById("results");
 let moveDiv = document.getElementById("move");
+
+restartBtn.disabled = true;
 
 function getComputerChoice() {
   let random = Math.floor(Math.random() * 3);
@@ -22,9 +25,9 @@ function playRound(humanChoice, computerChoice) {
   if (humanChoice == computerChoice) {
     resultsDiv.innerText = `You played: ${humanChoice}. The computer played: ${computerChoice}. It's a draw! Play another round.`;
   } else if (
-    (humanChoice == "paper" && computerChoice == "rock") ||
-    (humanChoice == "rock" && computerChoice == "scissors") ||
-    (humanChoice == "scissors" && computerChoice == "paper")
+    (humanChoice == "Paper" && computerChoice == "Rock") ||
+    (humanChoice == "Rock" && computerChoice == "Scissors") ||
+    (humanChoice == "Scissors" && computerChoice == "Paper")
   ) {
     humanScore += 1;
     resultsDiv.innerText = `You played: ${humanChoice}. The computer played: ${computerChoice}.You win the round! ${humanChoice} beats ${computerChoice}. Your score is ${humanScore}. The computer score is ${computerScore}.`;
@@ -32,16 +35,42 @@ function playRound(humanChoice, computerChoice) {
     computerScore += 1;
     resultsDiv.innerText = `You played: ${humanChoice}. The computer played: ${computerChoice}. You lose the round! ${computerChoice} beats ${humanChoice}. Your score is ${humanScore}. The computer score is ${computerScore}.`;
   }
+  if (humanScore == 5) {
+    resultsDiv.innerText = `You win the game! Your final score is ${humanScore}. The computer scored ${computerScore}.`;
+    rockBtn.disabled = true;
+    paperBtn.disabled = true;
+    scissorsBtn.disabled = true;
+    restartBtn.disabled = false;
+  } else if (computerScore == 5) {
+    `The computer wins the game! It scored ${computerScore}. Your score was ${humanScore}.`;
+    rockBtn.disabled = true;
+    paperBtn.disabled = true;
+    scissorsBtn.disabled = true;
+    restartBtn.disabled = false;
+  }
 }
 
-rockBtn.addEventListener("click", function()
- {playRound("Rock", getComputerChoice())});
- paperBtn.addEventListener("click", function()
- {playRound("Rock", getComputerChoice())});
- scissorsBtn.addEventListener("click", function()
- {playRound("Rock", getComputerChoice())});
+function restartGame(){
+  humanScore = 0;
+  computerScore = 0;
+  rockBtn.disabled = false;
+  paperBtn.disabled = false;
+  scissorsBtn.disabled = false;
+  restartBtn.disabled = true;
+  resultsDiv.innerText = "";
+}
 
- 
+rockBtn.addEventListener("click", function () {
+  playRound("Rock", getComputerChoice());
+});
+paperBtn.addEventListener("click", function () {
+  playRound("Paper", getComputerChoice());
+});
+scissorsBtn.addEventListener("click", function () {
+  playRound("Scissors", getComputerChoice());
+});
+
+restartBtn.addEventListener("click", restartGame)
 /*
 rockBtn.addEventListener('click', function(){playRound("Rock", computerChoice)})
 
