@@ -1,15 +1,56 @@
 let humanScore = 1;
 let computerScore = 1;
 
-let random = Math.floor(Math.random() * 3);
-let computerChoice =
-random=== 1
-    ? 'Rock'
-    : random=== 2
-    ? 'Paper'
-    : 'Scissors';
+let rockBtn = document.getElementById("rock-btn");
+let paperBtn = document.getElementById("paper-btn");
+let scissorsBtn = document.getElementById("scissors-btn");
+let resultsDiv = document.getElementById("results");
+let moveDiv = document.getElementById("move");
+
+function getComputerChoice() {
+  let random = Math.floor(Math.random() * 3);
+  if (random == 0) {
+    return "Rock";
+  } else if (random == 1) {
+    return "Paper";
+  } else {
+    return "Scissors";
+  }
+}
 
 function playRound(humanChoice, computerChoice) {
+  if (humanChoice == computerChoice) {
+    resultsDiv.innerText = `You played: ${humanChoice}. The computer played: ${computerChoice}. It's a draw! Play another round.`;
+  } else if (
+    (humanChoice == "paper" && computerChoice == "rock") ||
+    (humanChoice == "rock" && computerChoice == "scissors") ||
+    (humanChoice == "scissors" && computerChoice == "paper")
+  ) {
+    humanScore += 1;
+    resultsDiv.innerText = `You played: ${humanChoice}. The computer played: ${computerChoice}.You win the round! ${humanChoice} beats ${computerChoice}. Your score is ${humanScore}. The computer score is ${computerScore}.`;
+  } else {
+    computerScore += 1;
+    resultsDiv.innerText = `You played: ${humanChoice}. The computer played: ${computerChoice}. You lose the round! ${computerChoice} beats ${humanChoice}. Your score is ${humanScore}. The computer score is ${computerScore}.`;
+  }
+}
+
+rockBtn.addEventListener("click", function()
+ {playRound("Rock", getComputerChoice())});
+ paperBtn.addEventListener("click", function()
+ {playRound("Rock", getComputerChoice())});
+ scissorsBtn.addEventListener("click", function()
+ {playRound("Rock", getComputerChoice())});
+
+ 
+/*
+rockBtn.addEventListener('click', function(){playRound("Rock", computerChoice)})
+
+paperBtn.addEventListener('click', function(){playRound("Paper", computerChoice)})
+
+scissorsBtn.addEventListener('click', function(){playRound("Scissors", computerChoice)})*/
+
+/*old playRound syntax
+unction playRound(humanChoice, computerChoice) {
   if (humanChoice == computerChoice) {
     console.log(
       `You played: ${humanChoice}. The computer played: ${computerChoice}. It's a draw! Play another round.`
@@ -29,19 +70,7 @@ function playRound(humanChoice, computerChoice) {
       `You played: ${humanChoice}. The computer played: ${computerChoice}. You lose the round! ${computerChoice} beats ${humanChoice}. Your score is ${humanScore}. The computer score is ${computerScore}.`
     );
   }
-}
-
-let rockBtn = document.getElementById("rock-btn");
-let paperBtn = document.getElementById("paper-btn");
-let scissorsBtn = document.getElementById("scissors-btn");
-let resultsDiv = document.getElementById("results");
-
-rockBtn.addEventListener('click', function(){playRound("Rock", computerMove)})
-
-paperBtn.addEventListener('click', function(){playRound("Paper", computerMove)})
-
-scissorBtn.addEventListener('click', function(){playRound("Scissors", computerMove)})
-
+} */
 /*
 rockBtn.addEventListener("click", function () {
   playRound("Rock");
