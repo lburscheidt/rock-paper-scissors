@@ -25,9 +25,9 @@ function playRound(humanChoice, computerChoice) {
 	if (humanChoice === computerChoice) {
 		resultsDiv.innerHTML += `It's a draw! Play another round.`;
 	} else if (
-		(humanChoice == "Paper" && computerChoice == "Rock") ||
-		(humanChoice == "Rock" && computerChoice == "Scissors") ||
-		(humanChoice == "Scissors" && computerChoice == "Paper")
+		(humanChoice === "Paper" && computerChoice === "Rock") ||
+		(humanChoice === "Rock" && computerChoice === "Scissors") ||
+		(humanChoice === "Scissors" && computerChoice === "Paper")
 	) {
 		humanScore += 1;
 		resultsDiv.innerHTML +=
@@ -53,13 +53,13 @@ function playRound(humanChoice, computerChoice) {
 			computerScore +
 			".";
 	}
-	if (humanScore == 5) {
+	if (humanScore === 5) {
 		resultsDiv.innerText = `You win the game! Your final score is ${humanScore}. The computer scored ${computerScore}.`;
 		rockBtn.disabled = true;
 		paperBtn.disabled = true;
 		scissorsBtn.disabled = true;
 		restartBtn.disabled = false;
-	} else if (computerScore == 5) {
+	} else if (computerScore === 5) {
 		`The computer wins the game! It scored ${computerScore}. Your score was ${humanScore}.`;
 		rockBtn.disabled = true;
 		paperBtn.disabled = true;
@@ -75,7 +75,7 @@ function restartGame() {
 	paperBtn.disabled = false;
 	scissorsBtn.disabled = false;
 	restartBtn.disabled = true;
-	resultsDiv.innerText = "The results of your game will be displayed here.";
+	resultsDiv.innerText = "The game is on!";
 }
 
 rockBtn.addEventListener("click", function () {
