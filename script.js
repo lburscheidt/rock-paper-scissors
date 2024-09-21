@@ -1,8 +1,8 @@
 let humanScore = 0;
 let computerScore = 0;
 
-human.innerHTML = "<h2>Your score: " + humanScore + "</h2>";
-computer.innerHTML = "<h2>Computer score: " + computerScore + "</h2>";
+human.insertAdjacentHTML("beforeend", " " + humanScore);
+computer.insertAdjacentHTML("beforeend", " " + computerScore);
 restartBtn.disabled = true;
 
 function getComputerChoice() {
@@ -17,47 +17,42 @@ function getComputerChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
-	human.innerHTML = "<h2>Your score: " + humanScore + "</h2>";
-	computer.innerHTML = "<h2>Computer score: " + computerScore + "</h2>";
-	resultsDiv.innerHTML = "";
 	resultsDiv.innerHTML =
 		"You played: " +
 		humanChoice +
-		".<br /> The computer played: " +
+		".<br />The computer played: " +
 		computerChoice +
 		".";
-
-	let isDraw = humanChoice == computerChoice;
-	let humanWinsRound =
+	if (humanChoice == computerChoice) {
+		resultsDiv.innerHTML +=
+			"<br />You both played " +
+			humanChoice +
+			". It's a draw! Play another round.";
+	} else if (
 		(humanChoice === "Paper" && computerChoice === "Rock") ||
 		(humanChoice === "Rock" && computerChoice === "Scissors") ||
-		(humanChoice === "Scissors" && computerChoice === "Paper");
-
-	if (isDraw) {
-		humanScore.innerHTML = humanScore;
-		computerScore.innerHTML = computerScore;
-		resultsDiv.innerHTML = "It's a draw! Play another round.";
-	} else if (humanWinsRound) {
+		(humanChoice === "Scissors" && computerChoice === "Paper")
+	) {
 		humanScore += 1;
-		human.innerHTML = "<h2>Your score: " + humanScore + "</h2>";
-
+		human.innerHTML = humanScore;
 		if (hasWonGame()) {
-			human.innerHTML = "<h2>Your score: " + humanScore + "</h2>";
 			winMsgs();
 		} else {
-			human.innerHTML = "<h2>Your score: " + humanScore + "</h2>";
 			resultsDiv.innerHTML +=
 				"You win the round! " + humanChoice + " beats " + computerChoice + ".";
 		}
 	} else {
 		computerScore += 1;
-		computer.innerHTML = "<h2>Computer score: " + computerScore + "</h2>";
+		computer.innerHTML = computerScore;
 		if (hasWonGame()) {
 			winMsgs();
 		} else {
-			computer.innerHTML = "<h2>Computer score: " + computerScore + "</h2>";
 			resultsDiv.innerHTML +=
-				"You lose the round! " + computerChoice + " beats " + humanChoice + ".";
+				"<br />Computer wins the round! " +
+				computerChoice +
+				" beats " +
+				humanChoice +
+				".";
 		}
 	}
 }
