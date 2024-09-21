@@ -15,20 +15,23 @@ function getComputerChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
+	resultsDiv.innerHTML =
+		"You played: " +
+		humanChoice +
+		".<br /> The computer played: " +
+		computerChoice +
+		".<br />";
+
 	if (humanChoice === computerChoice) {
-		resultsDiv.innerText = `You played: ${humanChoice}. The computer played: ${computerChoice}. It's a draw! Play another round.`;
+		resultsDiv.innerHTML += `It's a draw! Play another round.`;
 	} else if (
 		(humanChoice == "Paper" && computerChoice == "Rock") ||
 		(humanChoice == "Rock" && computerChoice == "Scissors") ||
 		(humanChoice == "Scissors" && computerChoice == "Paper")
 	) {
 		humanScore += 1;
-		resultsDiv.innerHTML =
-			"You played: " +
-			humanChoice +
-			".<br /> The computer played: " +
-			computerChoice +
-			".<br />You win the round! " +
+		resultsDiv.innerHTML +=
+			"You win the round! " +
 			humanChoice +
 			" beats " +
 			computerChoice +
@@ -39,7 +42,16 @@ function playRound(humanChoice, computerChoice) {
 			".";
 	} else {
 		computerScore += 1;
-		resultsDiv.innerText = `You played: ${humanChoice}. The computer played: ${computerChoice}. You lose the round! ${computerChoice} beats ${humanChoice}. Your score is ${humanScore}. The computer score is ${computerScore}.`;
+		resultsDiv.innerHTML +=
+			"You lose the round! " +
+			computerChoice +
+			" beats " +
+			humanChoice +
+			".<br/>Your score is " +
+			humanScore +
+			".<br /> The computer score is " +
+			computerScore +
+			".";
 	}
 	if (humanScore == 5) {
 		resultsDiv.innerText = `You win the game! Your final score is ${humanScore}. The computer scored ${computerScore}.`;
