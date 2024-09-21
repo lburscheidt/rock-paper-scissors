@@ -76,13 +76,15 @@ button {
 }
 
 header {
-	height: 50px;
+	height: 100px;
 	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	background-color: lightblue;
 	margin-bottom: 50px;
+	font-weight: 800;
+	font-size: 3rem;
 }
 
 img {

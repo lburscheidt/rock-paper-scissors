@@ -53,13 +53,14 @@ function playRound(humanChoice, computerChoice) {
 			computerScore +
 			".";
 	}
-	if (humanScore === 5) {
+	if (humanScore == 5) {
 		resultsDiv.innerText = `You win the game! Your final score is ${humanScore}. The computer scored ${computerScore}.`;
 		rockBtn.disabled = true;
 		paperBtn.disabled = true;
 		scissorsBtn.disabled = true;
 		restartBtn.disabled = false;
-	} else if (computerScore === 5) {
+	}
+	if (computerScore == 5) {
 		`The computer wins the game! It scored ${computerScore}. Your score was ${humanScore}.`;
 		rockBtn.disabled = true;
 		paperBtn.disabled = true;
@@ -75,7 +76,8 @@ function restartGame() {
 	paperBtn.disabled = false;
 	scissorsBtn.disabled = false;
 	restartBtn.disabled = true;
-	resultsDiv.innerText = "The game is on!";
+	resultsDiv.innerHTML =
+		"Play Rock Paper Scissors against the computer!<br/>The first player to get to five points wins the game.";
 }
 
 rockBtn.addEventListener("click", function () {
