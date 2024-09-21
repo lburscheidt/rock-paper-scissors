@@ -1,6 +1,8 @@
 let humanScore = 0;
 let computerScore = 0;
 
+human.innerHTML = "<h2>Your score: " + humanScore + "</h2>";
+computer.innerHTML = "<h2>Computer score: " + computerScore + "</h2>";
 restartBtn.disabled = true;
 
 function getComputerChoice() {
@@ -15,13 +17,15 @@ function getComputerChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
+	human.innerHTML = "<h2>Your score: " + humanScore + "</h2>";
+	computer.innerHTML = "<h2>Computer score: " + computerScore + "</h2>";
 	resultsDiv.innerHTML = "";
 	resultsDiv.innerHTML =
 		"You played: " +
 		humanChoice +
 		".<br /> The computer played: " +
 		computerChoice +
-		".<br />";
+		".";
 
 	let isDraw = humanChoice == computerChoice;
 	let humanWinsRound =
@@ -30,43 +34,30 @@ function playRound(humanChoice, computerChoice) {
 		(humanChoice === "Scissors" && computerChoice === "Paper");
 
 	if (isDraw) {
-		resultsDiv.innerHTML +=
-			"Your score is: " +
-			humanScore +
-			".<br />The computer score is: " +
-			computerScore +
-			".<br />It's a draw! Play another round.";
+		humanScore.innerHTML = humanScore;
+		computerScore.innerHTML = computerScore;
+		resultsDiv.innerHTML = "It's a draw! Play another round.";
 	} else if (humanWinsRound) {
 		humanScore += 1;
+		human.innerHTML = "<h2>Your score: " + humanScore + "</h2>";
+
 		if (hasWonGame()) {
+			human.innerHTML = "<h2>Your score: " + humanScore + "</h2>";
 			winMsgs();
 		} else {
+			human.innerHTML = "<h2>Your score: " + humanScore + "</h2>";
 			resultsDiv.innerHTML +=
-				"You win the round! " +
-				humanChoice +
-				" beats " +
-				computerChoice +
-				".<br />Your score is: " +
-				humanScore +
-				" . <br />The computer score is: " +
-				computerScore +
-				".";
+				"You win the round! " + humanChoice + " beats " + computerChoice + ".";
 		}
 	} else {
 		computerScore += 1;
+		computer.innerHTML = "<h2>Computer score: " + computerScore + "</h2>";
 		if (hasWonGame()) {
 			winMsgs();
 		} else {
+			computer.innerHTML = "<h2>Computer score: " + computerScore + "</h2>";
 			resultsDiv.innerHTML +=
-				"You lose the round! " +
-				computerChoice +
-				" beats " +
-				humanChoice +
-				".<br/>Your score is: " +
-				humanScore +
-				".<br /> The computer score is: " +
-				computerScore +
-				".";
+				"You lose the round! " + computerChoice + " beats " + humanChoice + ".";
 		}
 	}
 }
@@ -94,6 +85,9 @@ function winMsgs() {
 function restartGame() {
 	humanScore = 0;
 	computerScore = 0;
+	human.innerHTML = "";
+	computer.innerHTML = "";
+
 	rockBtn.disabled = false;
 	paperBtn.disabled = false;
 	scissorsBtn.disabled = false;
