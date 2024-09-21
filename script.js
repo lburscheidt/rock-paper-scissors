@@ -15,6 +15,7 @@ function getComputerChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
+	resultsDiv.innerHTML = "";
 	resultsDiv.innerHTML =
 		"You played: " +
 		humanChoice +
@@ -22,50 +23,71 @@ function playRound(humanChoice, computerChoice) {
 		computerChoice +
 		".<br />";
 
-	if (humanChoice === computerChoice) {
-		resultsDiv.innerHTML += `It's a draw! Play another round.`;
-	} else if (
+	let isDraw = humanChoice == computerChoice;
+	let humanWinsRound =
 		(humanChoice === "Paper" && computerChoice === "Rock") ||
 		(humanChoice === "Rock" && computerChoice === "Scissors") ||
-		(humanChoice === "Scissors" && computerChoice === "Paper")
-	) {
-		humanScore += 1;
+		(humanChoice === "Scissors" && computerChoice === "Paper");
+
+	if (isDraw) {
 		resultsDiv.innerHTML +=
-			"You win the round! " +
-			humanChoice +
-			" beats " +
-			computerChoice +
-			".<br />Your score is " +
+			"Your score is: " +
 			humanScore +
-			" . <br />The computer score is " +
+			".<br />The computer score is: " +
 			computerScore +
-			".";
+			".<br />It's a draw! Play another round.";
+	} else if (humanWinsRound) {
+		humanScore += 1;
+		if (hasWonGame()) {
+			winMsgs();
+		} else {
+			resultsDiv.innerHTML +=
+				"You win the round! " +
+				humanChoice +
+				" beats " +
+				computerChoice +
+				".<br />Your score is: " +
+				humanScore +
+				" . <br />The computer score is: " +
+				computerScore +
+				".";
+		}
 	} else {
 		computerScore += 1;
-		resultsDiv.innerHTML +=
-			"You lose the round! " +
-			computerChoice +
-			" beats " +
-			humanChoice +
-			".<br/>Your score is " +
-			humanScore +
-			".<br /> The computer score is " +
-			computerScore +
-			".";
+		if (hasWonGame()) {
+			winMsgs();
+		} else {
+			resultsDiv.innerHTML +=
+				"You lose the round! " +
+				computerChoice +
+				" beats " +
+				humanChoice +
+				".<br/>Your score is: " +
+				humanScore +
+				".<br /> The computer score is: " +
+				computerScore +
+				".";
+		}
 	}
+}
+
+function hasWonGame() {
+	if (humanScore == 5 || computerScore == 5) {
+		return true;
+	}
+}
+
+function winMsgs() {
+	resultsDiv.innerText = "";
+	rockBtn.disabled = true;
+	paperBtn.disabled = true;
+	scissorsBtn.disabled = true;
+	restartBtn.disabled = false;
 	if (humanScore == 5) {
-		resultsDiv.innerText = `You win the game! Your final score is ${humanScore}. The computer scored ${computerScore}.`;
-		rockBtn.disabled = true;
-		paperBtn.disabled = true;
-		scissorsBtn.disabled = true;
-		restartBtn.disabled = false;
+		resultsDiv.innerText += `You win the game! Your final score is ${humanScore}. The computer scored ${computerScore}.`;
 	}
 	if (computerScore == 5) {
-		`The computer wins the game! It scored ${computerScore}. Your score was ${humanScore}.`;
-		rockBtn.disabled = true;
-		paperBtn.disabled = true;
-		scissorsBtn.disabled = true;
-		restartBtn.disabled = false;
+		resultsDiv.innerText += `The computer wins the game! It scored ${computerScore}. Your score was ${humanScore}.`;
 	}
 }
 
