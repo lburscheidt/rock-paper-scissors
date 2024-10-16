@@ -57,12 +57,9 @@ function playGame() {
       return `Computer wins the round! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}. Your score is ${humanScore}, the computer's is ${computerScore}.`;
     }
   }
-
-  console.log(playRound(getComputerChoice(), getHumanChoice()));
-  console.log(playRound(getComputerChoice(), getHumanChoice()));
-  console.log(playRound(getComputerChoice(), getHumanChoice()));
-  console.log(playRound(getComputerChoice(), getHumanChoice()));
-  console.log(playRound(getComputerChoice(), getHumanChoice()));
+  for (let i = 1; i <= 5; i++) {
+    console.log(playRound(getComputerChoice(), getHumanChoice()));
+  }
 
   if (humanScore > computerScore) {
     return `You win the game! Your score is ${humanScore}. The computer scored ${computerScore}.`;
