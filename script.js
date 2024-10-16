@@ -10,3 +10,20 @@ function getComputerChoice() {
 }
 
 console.log(getComputerChoice());
+
+function getHumanChoice() {
+  let humanChoice = prompt("Please enter your move: rock, paper, or scissors");
+  if (
+    humanChoice.toLowerCase() == "rock" ||
+    humanChoice.toLowerCase() == "paper" ||
+    humanChoice.toLowerCase() == "scissors"
+  ) {
+    return humanChoice;
+  } else {
+    return (humanChoice = prompt(
+      "Sorry, that's not a valid move. Please select from rock, paper, or scissors.",
+    ));
+  }
+}
+
+console.log(getHumanChoice());
