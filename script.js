@@ -4,11 +4,11 @@ let computerScore = 0;
 function getComputerChoice() {
   let computerChoiceNumber = Math.floor(Math.random() * 3);
   if (computerChoiceNumber === 0) {
-    return "rock";
+    return "Rock";
   } else if (computerChoiceNumber === 1) {
-    return "paper";
+    return "Paper";
   } else if (computerChoiceNumber === 2) {
-    return "scissors";
+    return "Scissors";
   }
 }
 
@@ -31,17 +31,25 @@ function getHumanChoice() {
 
 //console.log(getHumanChoice());
 
-function playRound(humanChoice, computerChoice) {
+function capitalize(string) {
+  let firstLetter = string.slice(0, 1).toUpperCase();
+  let lowerCase = string.slice(1).toLowerCase();
+  let newString = firstLetter + lowerCase;
+
+  return newString;
+}
+
+function playRound(computerChoice, humanChoice) {
   if (
-    (humanChoice == "rock" && computerChoice == "scissors") ||
-    (humanChoice == "scissors" && computerChoice == "paper") ||
-    (humanChoice == "paper" && humanChoice == "rock")
+    (humanChoice == "rock" && computerChoice == "Scissors") ||
+    (humanChoice == "scissors" && computerChoice == "Paper") ||
+    (humanChoice == "paper" && computerChoice == "Rock")
   ) {
     ++humanScore;
-    return `You win! ${humanChoice} beats ${computerChoice}.`;
+    return `You win! ${capitalize(humanChoice)} beats ${computerChoice}.`;
   } else {
     ++computerScore;
-    return `Computer wins! ${computerChoice} beats ${humanChoice}.`;
+    return `Computer wins! ${computerChoice} beats ${capitalize(humanChoice)}.`;
   }
 }
 
