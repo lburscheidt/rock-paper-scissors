@@ -1,15 +1,13 @@
 function getComputerChoice() {
-  let computerChoiceNumber = Math.floor(Math.random() * 3);
-  if (computerChoiceNumber === 0) {
+  let computerChoice = Math.floor(Math.random() * 3);
+  if (computerChoice === 0) {
     return "rock";
-  } else if (computerChoiceNumber === 1) {
+  } else if (computerChoice === 1) {
     return "paper";
-  } else if (computerChoiceNumber === 2) {
+  } else if (computerChoice === 2) {
     return "scissors";
   }
 }
-
-// console.log(getComputerChoice());
 
 function getHumanChoice() {
   let humanChoice = prompt(
@@ -27,8 +25,6 @@ function getHumanChoice() {
     ));
   }
 }
-
-// console.log(getHumanChoice());
 
 function capitalize(string) {
   let firstLetter = string.slice(0, 1).toUpperCase();
