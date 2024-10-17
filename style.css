@@ -1,0 +1,45 @@
+:root {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  padding: 10px;
+  border: none;
+  border: 1px solid #000;
+  border-radius: 0.5rem;
+}
+
+#result {
+  display: flex;
+  height: 100px;
+  width: 50%;
+  background-color: #76f2ba;
+  margin-bottom: 50px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+#game {
+  display: flex;
+  justify-content: space-around;
+  gap: 50px;
+}
+
+#buttons {
+  display: flex;
+  gap: 20px;
+}
+
+#buttons button {
+  background-color: #f2ba76;
+}
+
+#replay {
+  background-color: #f276ae;
+}
