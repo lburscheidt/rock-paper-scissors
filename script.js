@@ -22,10 +22,22 @@ function playGame() {
       (humanChoice == "paper" && computerChoice == "rock")
     ) {
       ++humanScore;
-      return `You win the round! ${humanChoice} beats ${computerChoice}. Your score is ${humanScore}, the computer's is ${computerScore}.`;
+      if (humanScore === 5) {
+        rock.disabled = true;
+        paper.disabled = true;
+        scissors.disabled = true;
+        return `You win the game! You scored ${humanScore}. The computer's final score is ${computerScore}.`;
+      } else
+        return `You win the round! ${humanChoice} beats ${computerChoice}. Your score is ${humanScore}. The computer's is ${computerScore}.`;
     } else {
       ++computerScore;
-      return `Computer wins the round! ${computerChoice} beats ${humanChoice}. Your score is ${humanScore}, the computer's is ${computerScore}.`;
+      if (computerScore === 5) {
+        rock.disabled = true;
+        paper.disabled = true;
+        scissors.disabled = true;
+        return `The computer wins the game. It scored ${computerScore}. Your final score is ${humanScore}. `;
+      } else
+        return `The computer wins the round! ${computerChoice} beats ${humanChoice}. Your score is ${humanScore}, the computer's is ${computerScore}.`;
     }
   }
 
