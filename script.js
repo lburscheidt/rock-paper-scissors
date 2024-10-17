@@ -33,7 +33,8 @@ function playGame() {
   buttons.addEventListener("click", (e) => {
     let targetId = e.target.id;
     let computerChoice = getComputerChoice();
-    console.log(playRound(targetId, computerChoice));
+    let result = document.querySelector("#result");
+    result.textContent = playRound(targetId, computerChoice);
   });
 }
 
