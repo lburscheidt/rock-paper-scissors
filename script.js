@@ -21,7 +21,7 @@ function playGame() {
     humanChoice = capitalizeFirstLetter(humanChoice);
     computerChoice = capitalizeFirstLetter(computerChoice);
     if (computerChoice == humanChoice) {
-      return `You both chose ${humanChoice}, so it's a draw! Your score is ${humanScore}, the computer's is ${computerScore}.`;
+      return `You both chose ${humanChoice}, so it's a draw!\nYour score:${humanScore}.\nComputer score: ${computerScore}.`;
     } else if (
       (humanChoice == "Rock" && computerChoice == "Scissors") ||
       (humanChoice == "Scissors" && computerChoice == "Paper") ||
@@ -36,9 +36,9 @@ function playGame() {
         finalComputerScore = computerScore;
         humanScore = 0;
         computerScore = 0;
-        return `You win the game! You scored ${finalHumanScore}. The computer's final score is ${finalComputerScore}.`;
+        return `You win the game!\nYou scored ${finalHumanScore}.\nThe computer's final score is ${finalComputerScore}.`;
       } else
-        return `You win the round! ${humanChoice} beats ${computerChoice}. Your score is ${humanScore}. The computer's is ${computerScore}.`;
+        return `You win the round! ${humanChoice} beats ${computerChoice}.\nYour score: ${humanScore}.\nComputer score: ${computerScore}.`;
     } else {
       ++computerScore;
       if (computerScore === 5) {
@@ -49,9 +49,9 @@ function playGame() {
         finalComputerScore = computerScore;
         humanScore = 0;
         computerScore = 0;
-        return `The computer wins the game. It scored ${finalComputerScore}. Your final score is ${finalHumanScore}. `;
+        return `The computer wins the game.\nIt scored ${finalComputerScore}.\nYour final score is ${finalHumanScore}. `;
       } else
-        return `The computer wins the round! ${computerChoice} beats ${humanChoice}. Your score is ${humanScore}, the computer's is ${computerScore}.`;
+        return `The computer wins the round! ${computerChoice} beats ${humanChoice}.\nYour score: ${humanScore}.\nComputer score: ${computerScore}.`;
     }
   }
 
@@ -60,7 +60,7 @@ function playGame() {
     let targetId = e.target.id;
     let computerChoice = getComputerChoice();
     let result = document.querySelector("#result");
-    result.textContent = playRound(targetId, computerChoice);
+    result.innerText = playRound(targetId, computerChoice);
   });
 }
 
@@ -68,7 +68,7 @@ function resetGame() {
   rock.disabled = false;
   paper.disabled = false;
   scissors.disabled = false;
-  result.textContent = "";
+  result.innerText = "";
 }
 
 let replay = document.querySelector("#replay");
