@@ -26,7 +26,11 @@ function playGame() {
         rock.disabled = true;
         paper.disabled = true;
         scissors.disabled = true;
-        return `You win the game! You scored ${humanScore}. The computer's final score is ${computerScore}.`;
+        finalHumanScore = humanScore;
+        finalComputerScore = computerScore;
+        humanScore = 0;
+        computerScore = 0;
+        return `You win the game! You scored ${finalHumanScore}. The computer's final score is ${finalComputerScore}.`;
       } else
         return `You win the round! ${humanChoice} beats ${computerChoice}. Your score is ${humanScore}. The computer's is ${computerScore}.`;
     } else {
@@ -35,6 +39,10 @@ function playGame() {
         rock.disabled = true;
         paper.disabled = true;
         scissors.disabled = true;
+        finalHumanScore = humanScore;
+        finalComputerScore = computerScore;
+        humanScore = 0;
+        computerScore = 0;
         return `The computer wins the game. It scored ${computerScore}. Your final score is ${humanScore}. `;
       } else
         return `The computer wins the round! ${computerChoice} beats ${humanChoice}. Your score is ${humanScore}, the computer's is ${computerScore}.`;
@@ -50,4 +58,13 @@ function playGame() {
   });
 }
 
+function resetGame() {
+  rock.disabled = false;
+  paper.disabled = false;
+  scissors.disabled = false;
+  result.textContent = "";
+}
+
+let replay = document.querySelector("#replay");
+replay.addEventListener("click", resetGame);
 playGame();
