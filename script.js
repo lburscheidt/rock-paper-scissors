@@ -9,17 +9,23 @@ function getComputerChoice() {
   }
 }
 
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 function playGame() {
   let humanScore = 0;
   let computerScore = 0;
 
   function playRound(humanChoice, computerChoice) {
+    humanChoice = capitalizeFirstLetter(humanChoice);
+    computerChoice = capitalizeFirstLetter(computerChoice);
     if (computerChoice == humanChoice) {
       return `You both chose ${humanChoice}, so it's a draw! Your score is ${humanScore}, the computer's is ${computerScore}.`;
     } else if (
-      (humanChoice == "rock" && computerChoice == "scissors") ||
-      (humanChoice == "scissors" && computerChoice == "paper") ||
-      (humanChoice == "paper" && computerChoice == "rock")
+      (humanChoice == "Rock" && computerChoice == "Scissors") ||
+      (humanChoice == "Scissors" && computerChoice == "Paper") ||
+      (humanChoice == "Paper" && computerChoice == "Rock")
     ) {
       ++humanScore;
       if (humanScore === 5) {
@@ -43,7 +49,7 @@ function playGame() {
         finalComputerScore = computerScore;
         humanScore = 0;
         computerScore = 0;
-        return `The computer wins the game. It scored ${computerScore}. Your final score is ${humanScore}. `;
+        return `The computer wins the game. It scored ${finalComputerScore}. Your final score is ${finalHumanScore}. `;
       } else
         return `The computer wins the round! ${computerChoice} beats ${humanChoice}. Your score is ${humanScore}, the computer's is ${computerScore}.`;
     }
